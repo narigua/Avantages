@@ -39,15 +39,6 @@ class PartnerController extends Controller
     }
 
     /**
-     * @Route("/discover", name="partner_discover")
-     * @Template()
-     */
-    public function discoverAction()
-    {
-        return array();
-    }
-
-    /**
      * @Route("/condition", name="partner_condition")
      * @Template()
      */
