@@ -1,0 +1,35 @@
+{% extends "AvantagesPartnerBundle::basepartner.html.twig" %}
+
+{% block body %}
+
+{{ parent() }}
+
+<div class="page-header">
+  <h1>{% trans %}Feature{% endtrans %}</h1>
+</div>
+
+<table class="table table-bordered table-striped record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Key</th>
+            <td>{{ entity.key }}</td>
+        </tr>
+        <tr>
+            <th>Value</th>
+            <td>{{ entity.value }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a class="btn" href="{{ path('partner_feature') }}">
+            {% trans %}Back to the list{% endtrans %}
+        </a>
+    </li>
+</ul>
+{% endblock body %}
