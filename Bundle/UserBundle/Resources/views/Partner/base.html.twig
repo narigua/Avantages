@@ -1,6 +1,6 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}Espace Partenaire{% endblock %}
+{% block title %}Avantages Partenaire{% endblock %}
 
 {% block stylesheets %}
 {{ parent() }}
@@ -14,7 +14,7 @@
 <div id="wrap">
 	<div class="navbar navbar-inverse">
 	  <div class="navbar-inner">
-	    <a class="brand" href="{{ path('partner') }}">Espace partenaire</a>
+	    <a class="brand" href="{{ path('partner') }}">Avantages partenaire</a>
 	    <ul class="nav">
 	    	<li><a href="{{ path('partner_discover') }}">Découvrir</a></li>
 	    	<li><a href="{{ path('partner_condition') }}">Conditions</a></li>
@@ -35,6 +35,7 @@
 	          <b class="caret"></b>
 	        </a>
 	        <ul class="dropdown-menu">
+	        	<li><a href="#">Mes coordonnées</a></li>
 	            <li><a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a></li>
 	        </ul>
 	      </li>
@@ -48,7 +49,7 @@
 <div id="push"></div>
 </div>
 <div id="footer">
-	<div class="container">
+	<div class="container container-inverse">
 		<p>&copy; <a href="http://avantages.fr">Avantages</a>, 2013 - {{ 'now'|date('Y') }}.</p>
 	</div>
 </div>
