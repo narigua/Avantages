@@ -1,0 +1,4 @@
+services:
+    avantages.usermanager:
+        class: Avantages\Bundle\UserBundle\Service\UserManager
+        arguments: [@doctrine.orm.entity_manager, @mailer, @templating]

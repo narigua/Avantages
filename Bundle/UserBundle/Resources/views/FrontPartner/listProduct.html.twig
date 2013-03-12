@@ -1,0 +1,13 @@
+{% extends "AvantagesUserBundle:FrontPartner:base.html.twig" %}
+
+{% block breadcrumb %}
+	{% include "AvantagesUserBundle:FrontPartner:breadcrumb.html.twig" with { "items": {
+		"Liste de mes produits": ""
+	}} %}
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+	<blockquote><p>Liste de mes produits</p></blockquote>
+	</div>
+{% endblock %}

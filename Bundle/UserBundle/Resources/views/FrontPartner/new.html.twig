@@ -1,0 +1,21 @@
+{% extends "AvantagesUserBundle:FrontPartner:base.html.twig" %}
+
+{% block breadcrumb %}
+	{% include "AvantagesUserBundle:FrontPartner:breadcrumb.html.twig" with { "items": {
+		"Devenir partenaire": ""
+	}} %}
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+	<blockquote><p>Formulaire de demande de partenariat</p></blockquote>
+	<form action="{{ path('partner_create') }}" method="POST">
+		<div class="input-prepend">
+		  <span class="add-on">{{ form_label(form.name) }}</span>
+		  {{ form_widget(form.name, { 'attr': { 'class': 'span3' }}) }}
+		</div>
+		{{ form_rest(form) }}
+		<input type="submit" value="Créer" class="btn btn-inverse"/>
+	</form>
+	</div>
+{% endblock %}

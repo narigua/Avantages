@@ -7,8 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Avantages\Bundle\UserBundle\Entity\Partner;
-use Avantages\Bundle\UserBundle\Form\PartnerType;
+use Avantages\Bundle\UserBundle\Entity\Employee;
+use Avantages\Bundle\UserBundle\Form\EmployeeType;
 
 use Pagerfanta\Adapter\ArrayAdapter;
 use Pagerfanta\Pagerfanta;
@@ -16,22 +16,22 @@ use Pagerfanta\Exception\NotValidCurrentPageException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Partner controller.
+ * Employee controller.
  *
- * @Route("/admin/user/partner")
+ * @Route("/admin/user/employee")
  */
-class PartnerController extends Controller
+class EmployeeController extends Controller
 {
     /**
-     * Lists all Partner entities.
+     * Lists all Employee entities.
      *
-     * @Route("/", name="admin_user_partner")
+     * @Route("/", name="admin_user_employee")
      * @Template()
      */
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository('AvantagesUserBundle:Partner')->findAll();
+        $entities = $em->getRepository('AvantagesUserBundle:Employee')->findAll();
 
         $adapter = new ArrayAdapter($entities);
         $pager = new PagerFanta($adapter);
@@ -49,18 +49,18 @@ class PartnerController extends Controller
     }
 
     /**
-     * Finds and displays a Partner entity.
+     * Finds and displays a Employee entity.
      *
-     * @Route("/{id}/show", name="admin_user_partner_show")
+     * @Route("/{id}/show", name="admin_user_employee_show")
      * @Template()
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('AvantagesUserBundle:Partner')->find($id);
+        $entity = $em->getRepository('AvantagesUserBundle:Employee')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Partner entity.');
+            throw $this->createNotFoundException('Unable to find Employee entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -72,15 +72,15 @@ class PartnerController extends Controller
     }
 
     /**
-     * Displays a form to create a new Partner entity.
+     * Displays a form to create a new Employee entity.
      *
-     * @Route("/new", name="admin_user_partner_new")
+     * @Route("/new", name="admin_user_employee_new")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new Partner();
-        $form   = $this->createForm(new PartnerType(), $entity);
+        $entity = new Employee();
+        $form   = $this->createForm(new EmployeeType(), $entity);
 
         return array(
             'entity' => $entity,
@@ -89,16 +89,16 @@ class PartnerController extends Controller
     }
 
     /**
-     * Creates a new Partner entity.
+     * Creates a new Employee entity.
      *
-     * @Route("/create", name="admin_user_partner_create")
+     * @Route("/create", name="admin_user_employee_create")
      * @Method("POST")
-     * @Template("AvantagesUserBundle:Partner:new.html.twig")
+     * @Template("AvantagesUserBundle:Employee:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity  = new Partner();
-        $form = $this->createForm(new PartnerType(), $entity);
+        $entity  = new Employee();
+        $form = $this->createForm(new EmployeeType(), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -109,12 +109,12 @@ class PartnerController extends Controller
             $this->get('session')->getFlashBag()->add(
                 'info',
                 $this->get('translator')->trans('%entity%[%id%] has been created', array(
-                    '%entity%' => 'Partner',
+                    '%entity%' => 'Employee',
                     '%id%'     => $entity->getId()
                 ))
             );
 
-            return $this->redirect($this->generateUrl('admin_user_partner_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_user_employee_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -124,21 +124,21 @@ class PartnerController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing Partner entity.
+     * Displays a form to edit an existing Employee entity.
      *
-     * @Route("/{id}/edit", name="admin_user_partner_edit")
+     * @Route("/{id}/edit", name="admin_user_employee_edit")
      * @Template()
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('AvantagesUserBundle:Partner')->find($id);
+        $entity = $em->getRepository('AvantagesUserBundle:Employee')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Partner entity.');
+            throw $this->createNotFoundException('Unable to find Employee entity.');
         }
 
-        $editForm = $this->createForm(new PartnerType(), $entity);
+        $editForm = $this->createForm(new EmployeeType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -149,23 +149,23 @@ class PartnerController extends Controller
     }
 
     /**
-     * Edits an existing Partner entity.
+     * Edits an existing Employee entity.
      *
-     * @Route("/{id}/update", name="admin_user_partner_update")
+     * @Route("/{id}/update", name="admin_user_employee_update")
      * @Method("POST")
-     * @Template("AvantagesUserBundle:Partner:edit.html.twig")
+     * @Template("AvantagesUserBundle:Employee:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('AvantagesUserBundle:Partner')->find($id);
+        $entity = $em->getRepository('AvantagesUserBundle:Employee')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Partner entity.');
+            throw $this->createNotFoundException('Unable to find Employee entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new PartnerType(), $entity);
+        $editForm = $this->createForm(new EmployeeType(), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
@@ -175,12 +175,12 @@ class PartnerController extends Controller
             $this->get('session')->getFlashBag()->add(
                 'info',
                 $this->get('translator')->trans('%entity%[%id%] has been updated', array(
-                    '%entity%' => 'Partner',
+                    '%entity%' => 'Employee',
                     '%id%'     => $entity->getId()
                 ))
             );
 
-            return $this->redirect($this->generateUrl('admin_user_partner_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_user_employee_edit', array('id' => $id)));
         }
 
         return array(
@@ -191,9 +191,9 @@ class PartnerController extends Controller
     }
 
     /**
-     * Deletes a Partner entity.
+     * Deletes a Employee entity.
      *
-     * @Route("/{id}/delete", name="admin_user_partner_delete")
+     * @Route("/{id}/delete", name="admin_user_employee_delete")
      * @Method("POST")
      */
     public function deleteAction(Request $request, $id)
@@ -203,10 +203,10 @@ class PartnerController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AvantagesUserBundle:Partner')->find($id);
+            $entity = $em->getRepository('AvantagesUserBundle:Employee')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Partner entity.');
+                throw $this->createNotFoundException('Unable to find Employee entity.');
             }
 
             $em->remove($entity);
@@ -215,27 +215,27 @@ class PartnerController extends Controller
             $this->get('session')->getFlashBag()->add(
                 'info',
                 $this->get('translator')->trans('%entity%[%id%] has been deleted', array(
-                    '%entity%' => 'Partner',
+                    '%entity%' => 'Employee',
                     '%id%'     => $id
                 ))
             );
         }
 
-        return $this->redirect($this->generateUrl('admin_user_partner'));
+        return $this->redirect($this->generateUrl('admin_user_employee'));
     }
 
     /**
-     * Display Partner deleteForm.
+     * Display Employee deleteForm.
      *
      * @Template()
      */
     public function deleteFormAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('AvantagesUserBundle:Partner')->find($id);
+        $entity = $em->getRepository('AvantagesUserBundle:Employee')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Partner entity.');
+            throw $this->createNotFoundException('Unable to find Employee entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -252,31 +252,6 @@ class PartnerController extends Controller
             ->add('id', 'hidden')
             ->getForm()
         ;
-    }
-
-    /**
-     * Activate Partner account.
-     *
-     * @Route("/user/partner/toggle/{id}", name="admin_user_partner_toggle")
-     * @Template()
-     */
-    public function toggleAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('AvantagesUserBundle:Partner')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Partner entity.');
-        }
-
-        $productOwner = $this->get('mp.manager')->getAttachedProductOwner($entity);
-        if ($entity->toggleActivation() && $productOwner) {
-            $this->getAttachedProductOwner();
-        }
-        $em->persist($entity);
-        $em->flush();
-
-        return $this->redirect($this->generateUrl('admin_user_partner'));
     }
 
 }

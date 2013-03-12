@@ -1,0 +1,18 @@
+{% extends "AvantagesUserBundle:FrontPartner:base.html.twig" %}
+
+{% block breadcrumb %}
+	{% include "AvantagesUserBundle:FrontPartner:breadcrumb.html.twig" with { "items": {
+		"Catalogue": path("partner"),
+		"Nouveau produit": ""
+	}} %}
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+	<blockquote><p>Créer un nouveau produit</p></blockquote>
+	<form action="{{ path('partner_product_create') }}" method="POST">
+		{{ form_widget(form) }}
+		<input type="submit" value="Créer" class="btn btn-inverse"/>
+	</form>
+	</div>
+{% endblock %}
