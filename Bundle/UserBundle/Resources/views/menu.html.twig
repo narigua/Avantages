@@ -1,0 +1,13 @@
+{% block menu_items %}
+	<li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          {% trans %}Users{% endtrans %}
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="{{ path('admin_user_partner') }}">{% trans %}Partners{% endtrans %}</a></li>
+            <li><a href="{{ path('admin_user_customer') }}">{% trans %}Customers{% endtrans %}</a></li>
+            <li><a href="{{ path('admin_user_employee') }}">{% trans %}Employee{% endtrans %}</a></li>
+        </ul>
+    </li>
+{% endblock %}
