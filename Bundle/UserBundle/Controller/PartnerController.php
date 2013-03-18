@@ -270,8 +270,8 @@ class PartnerController extends Controller
         }
 
         $productOwner = $this->get('mp.manager')->getAttachedProductOwner($entity);
-        if ($entity->toggleActivation() && $productOwner) {
-            $this->getAttachedProductOwner();
+        if ($entity->toggleActivation() && !$productOwner) {
+            $this->createProductOwner($entity);
         }
         $em->persist($entity);
         $em->flush();

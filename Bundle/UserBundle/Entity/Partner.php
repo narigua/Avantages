@@ -3,11 +3,12 @@
 namespace Avantages\Bundle\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use MP\Bundle\CatalogBundle\Model\ProductOwnerInterface;
 
 /**
  * @ORM\Entity
  */
-class Partner extends User
+class Partner extends User implements ProductOwnerInterface
 {
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
